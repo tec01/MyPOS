@@ -27,7 +27,7 @@
                <graphic>
                   <VBox alignment="CENTER">
                         <ImageView id="imgCashRegister" fitHeight="40.0" fitWidth="40.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" VBox.vgrow="NEVER">
-                              <Image url="" />
+
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Point of sale" />
                   </VBox>
@@ -47,7 +47,6 @@
                <graphic>
                   <VBox alignment="CENTER">
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="" />
                         </ImageView>
                         <Label text="Database" />
                   </VBox>
@@ -57,7 +56,6 @@
                   <VBox alignment="CENTER">
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="" />
                         </ImageView>
                         <Label text="Printers" />
                      </children>
@@ -68,7 +66,6 @@
                <graphic>
                   <VBox alignment="CENTER">
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                              <Image url="" />
                         </ImageView>
                         <Label text="Permissions" />
                   </VBox>
