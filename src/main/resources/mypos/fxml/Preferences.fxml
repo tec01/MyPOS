@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+
+<TabPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+      <Tab closable="false" text="Database">
+            <fx:include source="Databases.fxml" />
+      </Tab>
+      <Tab closable="false" text="Printers">
+
+      </Tab>
+      <Tab closable="false" text="Permissions">
+
+      </Tab>
+</TabPane>

@@ -1,0 +1,86 @@
+/***** STAGE ******/
+#btnMinimize{
+	-fx-background-image: url("img/minimize.png");
+    -fx-background-repeat: no-repeat;   
+    -fx-background-position: center bottom;
+    -fx-background-size:30.0;
+}
+#btnMaximize{
+	-fx-background-image: url("img/maximize.png");
+    -fx-background-repeat: no-repeat;   
+    -fx-background-position: center center;
+    -fx-background-size:30.0;
+}
+#btnClose{
+	-fx-background-image: url("img/close.png");
+    -fx-background-repeat: no-repeat;   
+    -fx-background-position: center center;
+    -fx-background-size:40.0; 
+}
+/****** MAIN PANEL *****/
+#navBar{
+	-fx-background-color: #0F1515;
+}
+
+.navBarHeader{
+  -fx-background-radius: 0.0px;
+	-fx-background-color: #D1D3DB;
+	-fx-font-size:17.0px;
+}
+.navBarHeader:disabled{
+  -fx-opacity: 1.0 ;
+}
+.navBarButton{
+	-fx-background-radius: 0.0px;
+	-fx-background-color: #FFFFFF;
+	-fx-font-size:15.0px;
+}
+/*****top bar */
+#mainSceneTopBar{
+  -fx-background-color: #5A8E9D;
+}
+
+/***** LEFT PANEL - NAVIGATION BAR */
+#btnDashBoard{
+	-fx-background-radius: 0.0px;
+	-fx-background-color: #37606B;
+}
+
+
+#btnManagement{
+	-fx-background-radius: 0.0px;
+}
+#sectionTpv{
+	
+}
+
+#btnPreferences{
+	
+}
+
+#btnMenu{
+	-fx-background-radius: 0.0px;
+		-fx-background-image: url("mypos/img/menu.png");
+	 -fx-background-repeat: no-repeat;   
+    -fx-background-position: center center;
+    -fx-background-size:25.0; 
+}
+
+
+/****** NUMPAD ******/
+.numPadButtons{
+    -fx-font-size: 20.0;
+    -fx-border-color: grey;
+    -fx-border-width: 1.0;
+   -fx-border-style: solid;
+   -fx-background-color: #CCE5FF;
+}
+
+#btnCanc{
+-fx-background-image: url("img/canc.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size:30.0;
+}
+
+

@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: myPos
+    #datasource:
+    #driverClassName: com.mysql.jdbc.Driver
+    #url: jdbc:mysql://localhost/racogustos
+    #temporary data storage
+    #jdbc: h2:mem:testdb
+    #jdbc: h2:file:/data/sample
+    #jdbc: h2:file:C:/data/sample (Windows only)
+    #username:
+    #password:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
+  logging:
+    config: ./mypos/src/main/resources/log4j2.xml
+server:
+  port: 9000
+
+
