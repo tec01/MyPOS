@@ -1,14 +1,15 @@
 package mypos.management.tickets;
 
-import java.math.BigDecimal;
-
 import mypos.commons.Discount;
 import mypos.management.products.Product;
+
+import java.math.BigDecimal;
+import java.util.Optional;
 
 public class Item {
     private Product product;
     private int quantity;
-    private Discount discount;
+    private Optional<Discount> discount;
     private BigDecimal subTotal;
 
     public Item(Product product, int quantity){
@@ -40,12 +41,12 @@ public class Item {
         this.subTotal = subTotal;
     }
 
-    public Discount getDiscount() {
+    public Optional<Discount> getDiscount() {
         return discount;
     }
 
     public void setDiscount(Discount discount) {
-        this.discount = discount;
+        this.discount = Optional.ofNullable(discount);
     }
     
     
