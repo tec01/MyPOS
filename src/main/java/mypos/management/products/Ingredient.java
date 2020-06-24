@@ -1,16 +1,24 @@
 package mypos.management.products;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.math.BigDecimal;
 
+@Entity
 public class Ingredient {
 
     @Id
     private Integer id;
+    @Column
     private String name;
+    @Column
     private String image;
+    @Column
     private BigDecimal price;
+    @Column
     private Boolean weighted;
+    @Column
     private String provider;
     
     public Ingredient() {

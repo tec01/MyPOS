@@ -3,16 +3,28 @@ package mypos.management.tickets;
 import mypos.commons.Discount;
 import mypos.management.products.Product;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.util.Optional;
 
+@Entity
 public class Item {
+
+    @Id
+    private int id;
+    @Column
     private Product product;
+    @Column
     private int quantity;
+    @Column
     private Optional<Discount> discount;
+    @Column
     private BigDecimal subTotal;
 
-    public Item(Product product, int quantity){
+    public Item(int id, Product product, int quantity){
+        this.id = id;
         this.product= product;
         this.quantity=quantity;
     }

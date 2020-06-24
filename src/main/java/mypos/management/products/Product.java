@@ -1,26 +1,40 @@
 package mypos.management.products;
 
+import mypos.management.families.Family;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
 
-import mypos.management.families.Family;
-
-
+@Entity
 public class Product {
 
+    @Id
     private Long id;
-    
+    @Column
     private LocalDate createdOn;
+    @Column
     private LocalDate modifiedOn;
+    @Column
     private String name;
+    @Column
     private BigDecimal price;
+    @Column
     private String provider;
+    @Column
     private String image;
+    @Column
     private String description;
+    @Column
     private Set<Ingredient> ingredients;
+    @Column
     private Family family;
+    @Column
     private ProductType PRODUCT_TYPE;
+    @Column
     private boolean weighted;
     
     public Product() {

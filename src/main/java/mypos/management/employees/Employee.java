@@ -1,14 +1,27 @@
 package mypos.management.employees;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Employee {
 
+    @Id
     private String id;
+    @Column
     private String dni;
+    @Column
     private String name;
+    @Column
     private String surname;
+    @Column
     private String lastName;
+    @Column
     private String address;
+    @Column
     private String postalCode;
+    @Column
     private String phoneNumber;
 
     public Employee(String id, String dni, String name, String surname,
