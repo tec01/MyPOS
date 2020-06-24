@@ -1,9 +1,11 @@
 package mypos.management.products;
 
+import javax.persistence.Id;
 import java.math.BigDecimal;
 
 public class Ingredient {
-    
+
+    @Id
     private Integer id;
     private String name;
     private String image;
