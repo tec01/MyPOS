@@ -1,6 +1,6 @@
-package mypos.management.users;
+package mypos.management.employees;
 
-public class User {
+public class Employee {
 
     private String id;
     private String dni;
@@ -11,8 +11,8 @@ public class User {
     private String postalCode;
     private String phoneNumber;
 
-    public User(String id, String dni, String name, String surname,
-                String lastName, String address, String postalCode, String phoneNumber) {
+    public Employee(String id, String dni, String name, String surname,
+                    String lastName, String address, String postalCode, String phoneNumber) {
         this.id = id;
         this.dni = dni;
         this.name = name;
