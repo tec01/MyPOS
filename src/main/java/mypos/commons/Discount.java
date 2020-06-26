@@ -3,13 +3,13 @@ package mypos.commons;
 import java.math.BigDecimal;
 
 public class Discount {
-    public enum TYPE {PERCENT, CASH}
+
+    private int id;
+    private DiscountType type;
     private BigDecimal amount;
-    private TYPE type;
-    
-    
-    
-    public Discount(BigDecimal amount, TYPE type) {
+
+
+    public Discount(BigDecimal amount, DiscountType type) {
         super();
         this.amount = amount;
         this.type = type;
@@ -20,12 +20,12 @@ public class Discount {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
-    public TYPE getType() {
+    public DiscountType getType() {
         return type;
     }
-    public void setType(TYPE type) {
+    public void setType(DiscountType type) {
         this.type = type;
     }
-    
-    
+
+
 }

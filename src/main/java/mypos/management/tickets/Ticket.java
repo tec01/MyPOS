@@ -1,6 +1,7 @@
 package mypos.management.tickets;
 
 import mypos.commons.Discount;
+import mypos.commons.PaymentMethod;
 import mypos.management.employees.Employee;
 
 import java.math.BigDecimal;
@@ -9,9 +10,8 @@ import java.util.List;
 
 public class Ticket {
 
-    private String id;
-    private String payMethod;
-    private String employeeName;
+    private int id;
+    private PaymentMethod payMethod;
     private BigDecimal total;
     private Discount discount;
     private BigDecimal totalCash;
@@ -20,14 +20,13 @@ public class Ticket {
     private LocalDateTime date;
     private Employee employee;
     private boolean delivered;
-    private List<Item> itemList;
+    private List<TicketItem> itemList;
 
-    public Ticket(String id, String payMethod, String employeeName,
+    public Ticket(int id, PaymentMethod payMethod,
                   BigDecimal total, Discount discount, BigDecimal totalCash, BigDecimal totalCard, BigDecimal change,
-                  LocalDateTime date, Employee employee, boolean delivered, List<Item> itemList) {
+                  LocalDateTime date, Employee employee, boolean delivered, List<TicketItem> itemList) {
         this.id = id;
         this.payMethod = payMethod;
-        this.employeeName = employeeName;
         this.total = total;
         this.totalCash = totalCash;
         this.totalCard = totalCard;
@@ -39,31 +38,21 @@ public class Ticket {
         this.itemList = itemList;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getPayMethod() {
+    public PaymentMethod getPayMethod() {
         return payMethod;
     }
 
-    public void setPayMethod(String payMethod) {
+    public void setPayMethod(PaymentMethod payMethod) {
         this.payMethod = payMethod;
     }
-
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
-
-  
 
     public BigDecimal getTotal() {
         return total;
@@ -121,11 +110,11 @@ public class Ticket {
         this.delivered = delivered;
     }
 
-    public List<Item> getItemList() {
+    public List<TicketItem> getItemList() {
         return itemList;
     }
 
-    public void setItemList(List<Item> itemList) {
+    public void setItemList(List<TicketItem> itemList) {
         this.itemList = itemList;
     }
 
@@ -136,5 +125,5 @@ public class Ticket {
     public void setDiscount(Discount discount) {
         this.discount = discount;
     }
-    
+
 }
