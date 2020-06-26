@@ -1,33 +1,46 @@
 package mypos.management.tickets;
 
 import mypos.commons.Discount;
+import mypos.commons.PaymentMethod;
 import mypos.management.employees.Employee;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Entity
 public class Ticket {
 
-    private String id;
-    private String payMethod;
-    private String employeeName;
+    @Id
+    @GeneratedValue
+    private int id;
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod payMethod;
+    @Column(nullable = false)
     private BigDecimal total;
+    @OneToOne
     private Discount discount;
+    @Column
     private BigDecimal totalCash;
+    @Column
     private BigDecimal totalCard;
+    @Column
     private BigDecimal change;
+    @Column
     private LocalDateTime date;
+    @OneToOne
     private Employee employee;
+    @Column(nullable = false)
     private boolean delivered;
+    @OneToMany
     private List<Item> itemList;
 
-    public Ticket(String id, String payMethod, String employeeName,
+    public Ticket(int id, PaymentMethod payMethod,
                   BigDecimal total, Discount discount, BigDecimal totalCash, BigDecimal totalCard, BigDecimal change,
                   LocalDateTime date, Employee employee, boolean delivered, List<Item> itemList) {
         this.id = id;
         this.payMethod = payMethod;
-        this.employeeName = employeeName;
         this.total = total;
         this.totalCash = totalCash;
         this.totalCard = totalCard;
@@ -39,31 +52,21 @@ public class Ticket {
         this.itemList = itemList;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getPayMethod() {
+    public PaymentMethod getPayMethod() {
         return payMethod;
     }
 
-    public void setPayMethod(String payMethod) {
+    public void setPayMethod(PaymentMethod payMethod) {
         this.payMethod = payMethod;
     }
-
-    public String getEmployeeName() {
-        return employeeName;
-    }
-
-    public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName;
-    }
-
-  
 
     public BigDecimal getTotal() {
         return total;

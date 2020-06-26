@@ -2,9 +2,7 @@ package mypos.management.products;
 
 import mypos.management.families.Family;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Set;
@@ -13,14 +11,15 @@ import java.util.Set;
 public class Product {
 
     @Id
-    private Long id;
-    @Column
+    @GeneratedValue
+    private int id;
+    @Column(nullable = false)
     private LocalDate createdOn;
     @Column
     private LocalDate modifiedOn;
-    @Column
+    @Column(nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false)
     private BigDecimal price;
     @Column
     private String provider;
@@ -28,23 +27,23 @@ public class Product {
     private String image;
     @Column
     private String description;
-    @Column
+    @OneToMany
     private Set<Ingredient> ingredients;
-    @Column
+    @OneToOne
     private Family family;
     @Column
     private ProductType PRODUCT_TYPE;
-    @Column
+    @Column(nullable = false)
     private boolean weighted;
     
     public Product() {
         
     }
     
-    public Long getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
     public LocalDate getCreatedOn() {

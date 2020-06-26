@@ -1,15 +1,21 @@
 package mypos.commons;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 
+@Entity
 public class Discount {
-    public enum TYPE {PERCENT, CASH}
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @Enumerated(EnumType.STRING)
+    private DiscountType type;
+    @Column
     private BigDecimal amount;
-    private TYPE type;
+
     
-    
-    
-    public Discount(BigDecimal amount, TYPE type) {
+    public Discount(BigDecimal amount, DiscountType type) {
         super();
         this.amount = amount;
         this.type = type;
@@ -20,10 +26,10 @@ public class Discount {
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
-    public TYPE getType() {
+    public DiscountType getType() {
         return type;
     }
-    public void setType(TYPE type) {
+    public void setType(DiscountType type) {
         this.type = type;
     }
     

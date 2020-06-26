@@ -1,13 +1,8 @@
 package mypos.management.orders;
 
-import javafx.util.Pair;
 import mypos.management.employees.Employee;
-import mypos.management.products.Ingredient;
-import mypos.management.products.Product;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,14 +10,14 @@ import java.util.List;
 public class Order {
 
     @Id
+    @GeneratedValue
     private int id;
     @Column
-    private List<Pair<Product,Ingredient>> items;
-    @Column
-    private List<Allergen> allergens;
+    @OneToMany(targetEntity=OrderItem.class, mappedBy="id", fetch=FetchType.EAGER)
+    private List<OrderItem> items;
     @Column
     private LocalDateTime dateTime;
-    @Column
+    @ManyToOne(targetEntity=Employee.class, fetch=FetchType.EAGER)
     private Employee employee;
 
 

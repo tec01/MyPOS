@@ -2,16 +2,18 @@ package mypos.management.employees;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Employee {
 
     @Id
-    private String id;
+    @GeneratedValue
+    private int id;
     @Column
     private String dni;
-    @Column
+    @Column(nullable = false)
     private String name;
     @Column
     private String surname;
@@ -21,10 +23,10 @@ public class Employee {
     private String address;
     @Column
     private String postalCode;
-    @Column
+    @Column(nullable = false)
     private String phoneNumber;
 
-    public Employee(String id, String dni, String name, String surname,
+    public Employee(int id, String dni, String name, String surname,
                     String lastName, String address, String postalCode, String phoneNumber) {
         this.id = id;
         this.dni = dni;
@@ -36,11 +38,11 @@ public class Employee {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
