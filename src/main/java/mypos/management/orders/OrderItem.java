@@ -3,7 +3,6 @@ package mypos.management.orders;
 import mypos.management.products.Ingredient;
 import mypos.management.products.Product;
 
-import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -20,4 +19,7 @@ public class OrderItem {
     @Column
     @OneToMany
     private List<Allergen> allergens;
+    @Column
+    @OneToMany
+    private List<OrderOption> options;
 }

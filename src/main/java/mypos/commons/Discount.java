@@ -5,16 +5,15 @@ import java.math.BigDecimal;
 
 @Entity
 public class Discount {
+
     @Id
     @GeneratedValue
     private int id;
-
     @Enumerated(EnumType.STRING)
     private DiscountType type;
     @Column
     private BigDecimal amount;
 
-    
     public Discount(BigDecimal amount, DiscountType type) {
         super();
         this.amount = amount;
@@ -32,6 +31,5 @@ public class Discount {
     public void setType(DiscountType type) {
         this.type = type;
     }
-    
-    
+
 }

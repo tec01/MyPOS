@@ -2,12 +2,11 @@ package mypos.management.tickets;
 
 import mypos.commons.Discount;
 import mypos.management.products.Product;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-public class Item {
+public class TicketItem {
 
     @Id
     @GeneratedValue
@@ -21,7 +20,7 @@ public class Item {
     @Column
     private BigDecimal subTotal;
 
-    public Item(int id, Product product, int quantity){
+    public TicketItem(int id, Product product, int quantity){
         this.id = id;
         this.product= product;
         this.quantity=quantity;
@@ -58,6 +57,6 @@ public class Item {
     public void setDiscount(Discount discount) {
         this.discount = discount;
     }
-    
-    
+
+
 }

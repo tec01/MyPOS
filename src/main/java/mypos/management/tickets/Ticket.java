@@ -34,11 +34,11 @@ public class Ticket {
     @Column(nullable = false)
     private boolean delivered;
     @OneToMany
-    private List<Item> itemList;
+    private List<TicketItem> itemList;
 
     public Ticket(int id, PaymentMethod payMethod,
                   BigDecimal total, Discount discount, BigDecimal totalCash, BigDecimal totalCard, BigDecimal change,
-                  LocalDateTime date, Employee employee, boolean delivered, List<Item> itemList) {
+                  LocalDateTime date, Employee employee, boolean delivered, List<TicketItem> itemList) {
         this.id = id;
         this.payMethod = payMethod;
         this.total = total;
@@ -124,11 +124,11 @@ public class Ticket {
         this.delivered = delivered;
     }
 
-    public List<Item> getItemList() {
+    public List<TicketItem> getItemList() {
         return itemList;
     }
 
-    public void setItemList(List<Item> itemList) {
+    public void setItemList(List<TicketItem> itemList) {
         this.itemList = itemList;
     }
 
@@ -139,5 +139,5 @@ public class Ticket {
     public void setDiscount(Discount discount) {
         this.discount = discount;
     }
-    
+
 }
