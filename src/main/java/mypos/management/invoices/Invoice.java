@@ -3,6 +3,7 @@ package mypos.management.invoices;
 import mypos.commons.Discount;
 import mypos.commons.PaymentMethod;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -20,7 +21,7 @@ public class Invoice {
     private BigDecimal total;
     @Column(nullable = false)
     private PaymentMethod paymentMethod;
-    @Column
+    @OneToOne
     private Discount discount;
     @Column(nullable = false)
     private String path;
