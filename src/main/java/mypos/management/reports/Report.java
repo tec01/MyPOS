@@ -1,11 +1,9 @@
 package mypos.management.reports;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "REPORT")
 public class Report {
     @Id
     @GeneratedValue
@@ -13,4 +11,23 @@ public class Report {
     @Column(nullable = false)
     private String path;
 
+    public Report(){
+
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 }

@@ -8,42 +8,47 @@ import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
+@Table(name = "PRODUCTS")
 public class Product {
 
     @Id
-    @GeneratedValue
-    private int id;
-    @Column(nullable = false)
+    @Column(name = "PRODUCT_ID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Integer id;
+    @Column( name = "DATE_CREATED", nullable = false)
     private LocalDate createdOn;
-    @Column
+    @Column( name = "DATE_MODIFIED")
     private LocalDate modifiedOn;
-    @Column(nullable = false)
+    @Column( name = "NAME", nullable = false)
     private String name;
-    @Column(nullable = false)
+    @Column( name="price", precision = 2, scale = 2 , nullable = false)
     private BigDecimal price;
-    @Column
+    @Column( name = "PROVIDER")
     private String provider;
-    @Column
+    @Column( name = "IMG_PATH")
     private String image;
-    @Column
+    @Column( name = "DESCRIPTION")
     private String description;
     @OneToMany
+    @JoinColumn ( name = "INGREDIENT_ID")
     private Set<Ingredient> ingredients;
-    @OneToOne
+    @ManyToOne
+    @JoinColumn (name = "FAMILY_ID", nullable = false)
     private Family family;
-    @Column
+    @Column ( nullable = false)
+    @Enumerated(EnumType.STRING)
     private ProductType PRODUCT_TYPE;
-    @Column(nullable = false)
+    @Column( name = "WEIGHTED", nullable = false)
     private boolean weighted;
     
     public Product() {
         
     }
     
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public LocalDate getCreatedOn() {

@@ -1,35 +1,35 @@
 package mypos.management.employees;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "EMPLOYEES")
 public class Employee {
 
     @Id
-    @GeneratedValue
-    private int id;
-    @Column
-    private String dni;
-    @Column(nullable = false)
+    @Column(name = "EMPLOYEE_ID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Integer id;
+    @Column(name = "NAME", nullable = false)
     private String name;
-    @Column
+    @Column(name = "SURNAME")
     private String surname;
-    @Column
+    @Column(name = "LAST_NAME")
     private String lastName;
-    @Column
+    @Column(name = "ADDRESS")
     private String address;
-    @Column
+    @Column(name = "POSTAL_CODE")
     private String postalCode;
-    @Column(nullable = false)
+    @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
 
-    public Employee(int id, String dni, String name, String surname,
+    public Employee(){
+
+    }
+
+    public Employee(int id, String name, String surname,
                     String lastName, String address, String postalCode, String phoneNumber) {
         this.id = id;
-        this.dni = dni;
         this.name = name;
         this.surname = surname;
         this.lastName = lastName;
@@ -44,14 +44,6 @@ public class Employee {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
     }
 
     public String getName() {

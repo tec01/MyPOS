@@ -1,26 +1,25 @@
 package mypos.management.products;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "INGREDIENTS")
 public class Ingredient {
 
     @Id
-    @GeneratedValue
+    @Column(name = "INGREDIENT_ID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.AUTO)
     private int id;
-    @Column
+    @Column( name = "NAME", nullable = false)
     private String name;
-    @Column
+    @Column(name = "IMG_PATH")
     private String image;
-    @Column
+    @Column( name="PRICE", nullable = false, precision = 2, scale = 2 )
     private BigDecimal price;
-    @Column
+    @Column( name = "WEIGHTED", nullable = false )
     private Boolean weighted;
-    @Column
+    @Column( name = "PROVIDER")
     private String provider;
     
     public Ingredient() {

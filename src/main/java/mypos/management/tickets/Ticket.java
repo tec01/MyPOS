@@ -10,54 +10,63 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Table(name = "TICKETS")
 public class Ticket {
 
     @Id
-    @GeneratedValue
-    private int id;
+    @Column(name = "TICKET_ID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Integer ticketId;
+    @Column (nullable = false)
     @Enumerated(EnumType.STRING)
     private PaymentMethod payMethod;
-    @Column(nullable = false)
+    @Column( name = "TOTAL", nullable = false)
     private BigDecimal total;
     @OneToOne
+    @JoinColumn(name="DISCOUNT_ID")
     private Discount discount;
-    @Column
+    @Column (name="TOTAL_CASH", precision = 2, scale = 2, nullable = false)
     private BigDecimal totalCash;
-    @Column
+    @Column (name="TOTAL_CARD", precision = 2, scale = 2, nullable = false)
     private BigDecimal totalCard;
-    @Column
-    private BigDecimal change;
-    @Column
-    private LocalDateTime date;
-    @OneToOne
+    @Column (name="TOTAL_RETURN", precision = 2, scale = 2 )
+    private BigDecimal totalReturn ;
+    @Column (name="DATE_REGISTERED", precision = 2, scale = 2, nullable = false )
+    private LocalDateTime dateRegistered;
+    @ManyToOne
+    @JoinColumn (name = "EMPLOYEE_ID", nullable = false)
     private Employee employee;
     @Column(nullable = false)
     private boolean delivered;
-    @OneToMany
+    @OneToMany (mappedBy = "ticket")
     private List<TicketItem> itemList;
 
-    public Ticket(int id, PaymentMethod payMethod,
-                  BigDecimal total, Discount discount, BigDecimal totalCash, BigDecimal totalCard, BigDecimal change,
-                  LocalDateTime date, Employee employee, boolean delivered, List<TicketItem> itemList) {
-        this.id = id;
+    public Ticket(){
+
+    }
+
+    public Ticket(int ticketId, PaymentMethod payMethod,
+                  BigDecimal total, Discount discount, BigDecimal totalCash, BigDecimal totalCard, BigDecimal totalReturn,
+                  LocalDateTime dateRegistered, Employee employee, boolean delivered, List<TicketItem> itemList) {
+        this.ticketId = ticketId;
         this.payMethod = payMethod;
         this.total = total;
         this.totalCash = totalCash;
         this.totalCard = totalCard;
-        this.change = change;
+        this.totalReturn = totalReturn;
         this.discount= discount;
-        this.date = date;
+        this.dateRegistered = dateRegistered;
         this.employee = employee;
         this.delivered = delivered;
         this.itemList = itemList;
     }
 
     public int getId() {
-        return id;
+        return ticketId;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.ticketId = id;
     }
 
     public PaymentMethod getPayMethod() {
@@ -92,20 +101,20 @@ public class Ticket {
         this.totalCard = totalCard;
     }
 
-    public BigDecimal getChange() {
-        return change;
+    public BigDecimal getTotalReturn() {
+        return totalReturn;
     }
 
-    public void setChange(BigDecimal change) {
-        this.change = change;
+    public void setTotalReturn(BigDecimal totalReturn) {
+        this.totalReturn = totalReturn;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getDateRegistered() {
+        return dateRegistered;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setDateRegistered(LocalDateTime dateRegistered) {
+        this.dateRegistered = dateRegistered;
     }
 
     public Employee getEmployee() {

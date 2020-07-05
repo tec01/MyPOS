@@ -1,9 +1,13 @@
+#https://docs.spring.io/autorepo/docs/spring-boot/2.2.6.RELEASE/reference/html/appendix-application-properties.html#core-properties
 spring:
   application:
     name: myPos
+  main:
+      web_environment: false
+      show_banner: false
   datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.1.23:3306/ormtest?serverTimezone=UTC
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.23:3306/ormtest?useSSL=false&serverTimezone=UTC
     show_sql: true
     username: root
     password: root
@@ -12,11 +16,9 @@ spring:
       #jdbc: h2:file:/data/sample
       #jdbc: h2:file:C:/data/sample (Windows only)
   jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQLDialect
     hibernate:
-        ddl-auto: create-drop
+      ddl-auto: update
+
   autoconfigure:
   #exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
   logging:

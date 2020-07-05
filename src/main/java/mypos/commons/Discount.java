@@ -4,15 +4,21 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Table (name = "DISCOUNTS")
 public class Discount {
 
     @Id
-    @GeneratedValue
-    private int id;
+    @Column(name = "DISCOUNT_ID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Integer id;
     @Enumerated(EnumType.STRING)
     private DiscountType type;
-    @Column
+    @Column( name = "AMOUNT", nullable = false)
     private BigDecimal amount;
+
+    public Discount(){
+
+    }
 
     public Discount(BigDecimal amount, DiscountType type) {
         super();
@@ -32,4 +38,11 @@ public class Discount {
         this.type = type;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

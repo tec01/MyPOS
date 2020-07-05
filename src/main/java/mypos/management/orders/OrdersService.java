@@ -15,7 +15,7 @@ public class OrdersService {
         this.repository = repository;
     }
 
-    public List<Order> getAll(){
+    public List<CustomerOrder> getAll(){
         return repository.findAll();
     }
 

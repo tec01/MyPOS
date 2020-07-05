@@ -2,28 +2,33 @@ package mypos.management.tickets;
 
 import mypos.commons.Discount;
 import mypos.management.products.Product;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "TICKET_ITEMS")
 public class TicketItem {
 
     @Id
-    @GeneratedValue
-    private int id;
+    @Column(name = "TICKET_ITEM_ID", nullable = false)
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private Integer ticketItemId;
     @OneToOne
+    @JoinColumn(name = "PRODUCT_ID",nullable = false)
     private Product product;
-    @Column
-    private int quantity;
-    @OneToOne
+    @Column (name = "QUANTITY", nullable = false)
+    private Float quantity;
+    @OneToOne(optional = true)
+    @JoinColumn (name = "DISCOUNT_ID")
     private Discount discount;
-    @Column
+    @Column (name="SUBTOTAL", precision = 2, scale = 2 , nullable = false)
     private BigDecimal subTotal;
+    @ManyToOne
+    @JoinColumn(name = "TICKET_ID", nullable = false)
+    private Ticket ticket;
 
-    public TicketItem(int id, Product product, int quantity){
-        this.id = id;
-        this.product= product;
-        this.quantity=quantity;
+    public TicketItem(){
     }
 
     public Product getProduct() {
@@ -34,11 +39,11 @@ public class TicketItem {
         this.product = product;
     }
 
-    public int getQuantity() {
+    public Float getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Float quantity) {
         this.quantity = quantity;
     }
 
@@ -59,4 +64,11 @@ public class TicketItem {
     }
 
 
+    public Integer getId() {
+        return ticketItemId;
+    }
+
+    public void setId(Integer id) {
+        this.ticketItemId = id;
+    }
 }

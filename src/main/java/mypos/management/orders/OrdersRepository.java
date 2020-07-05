@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface OrdersRepository extends JpaRepository<Order, Integer>{
+public interface OrdersRepository extends JpaRepository<CustomerOrder, Integer>{
 
-    Optional<Order> findById(Integer id);
+    Optional<CustomerOrder> findById(Integer id);
 
 }
