@@ -21,13 +21,13 @@ public class Product {
     private LocalDate modifiedOn;
     @Column( name = "NAME", nullable = false)
     private String name;
-    @Column( name="price", precision = 2, scale = 2 , nullable = false)
+    @Column( name="PRICE", precision = 2 , nullable = false)
     private BigDecimal price;
     @Column( name = "PROVIDER")
     private String provider;
-    @Column( name = "IMG_PATH")
+    @Column( name = "IMG_PATH", length = 400)
     private String image;
-    @Column( name = "DESCRIPTION")
+    @Column( name = "DESCRIPTION", length = 10000)
     private String description;
     @OneToMany
     @JoinColumn ( name = "INGREDIENT_ID")
@@ -35,7 +35,7 @@ public class Product {
     @ManyToOne
     @JoinColumn (name = "FAMILY_ID", nullable = false)
     private Family family;
-    @Column ( nullable = false)
+    @Column ( name = "PRODUCT_TYPE", nullable = false)
     @Enumerated(EnumType.STRING)
     private ProductType PRODUCT_TYPE;
     @Column( name = "WEIGHTED", nullable = false)

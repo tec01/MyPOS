@@ -2,6 +2,7 @@ package mypos.management.invoices;
 
 import mypos.commons.Discount;
 import mypos.commons.PaymentMethod;
+import mypos.management.employees.Employee;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -16,7 +17,7 @@ public class Invoice {
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Integer id;
     @Column( name = "NIF", nullable = false)
-    private String client;
+    private String customer;
     @Column( name = "DATE_REGISTERED", nullable = false)
     private LocalDateTime dateRegistered;
     @Column( name = "TOTAL", nullable = false)
@@ -29,6 +30,9 @@ public class Invoice {
     private Discount discount;
     @Column( name = "FILE_PATH",  nullable = false)
     private String path;
+    @ManyToOne
+    @JoinColumn (name = "employee_id")
+    private Employee employee;
 
     public Invoice(){
 
@@ -42,12 +46,12 @@ public class Invoice {
         this.id = id;
     }
 
-    public String getClient() {
-        return client;
+    public String getCustomer() {
+        return customer;
     }
 
-    public void setClient(String client) {
-        this.client = client;
+    public void setCustomer(String customer) {
+        this.customer = customer;
     }
 
     public LocalDateTime getDateRegistered() {
@@ -88,5 +92,13 @@ public class Invoice {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
