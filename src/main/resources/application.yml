@@ -6,18 +6,16 @@ spring:
       web_environment: false
       show_banner: false
   datasource:
+    platform: mysql
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://192.168.1.23:3306/ormtest?useSSL=false&serverTimezone=UTC
     show_sql: true
     username: root
     password: root
-      #temporary data storage
-      #jdbc: h2:mem:testdb
-      #jdbc: h2:file:/data/sample
-      #jdbc: h2:file:C:/data/sample (Windows only)
+    initialization-mode: always
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
 
   autoconfigure:
   #exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration

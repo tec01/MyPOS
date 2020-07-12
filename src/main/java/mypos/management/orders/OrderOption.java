@@ -12,8 +12,7 @@ public class OrderOption {
     private Integer id;
     @Column ( nullable = false)
     private String name;
-    @Column ( nullable = false)
-    private String value;
+
 
     public OrderOption(){
 
@@ -35,11 +34,4 @@ public class OrderOption {
         this.name = name;
     }
 
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(String value) {
-        this.value = value;
-    }
 }
