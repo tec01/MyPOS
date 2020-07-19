@@ -3,6 +3,7 @@ package mypos.management.employees;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeService {
@@ -17,7 +18,12 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee getEmployee(String name){
+    public Optional<Employee> getByName(String name){
         return employeeRepository.findByName(name);
     }
+
+    public Optional<Employee> getByPhoneNumber(String phoneNumber){
+        return employeeRepository.findByPhoneNumber(phoneNumber);
+    }
+
 }
