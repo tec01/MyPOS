@@ -5,7 +5,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane id="mainPanel" fx:id="mainPanel" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypos.mainScene.MainSceneController">
+<BorderPane id="mainPanel" fx:id="mainPanel" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypos.controllers.MainSceneController">
 	<left>
 		<VBox id="navBar" fx:id="navBar" alignment="TOP_CENTER" depthTest="DISABLE" spacing="2.0" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
             <Label id="btnDashBoard" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" stylesheets="@../../style.css" text="POS">
@@ -30,7 +30,8 @@
                   <Font name="Arial Bold" size="19.0" />
                </font>
             </Button>
-				<Button fx:id="btnInventory" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" text="Inventory" />
+				<Button fx:id="btnProducts" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" text="Products" />
+         <Button fx:id="btnFamilies" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" text="Families" />
 				<Button fx:id="btnTickets" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" stylesheets="@../../style.css" text="Tickets" />
 				<Button fx:id="btnInvoices" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" stylesheets="@../../style.css" text="Invoices" />
 				<Button fx:id="btnOrders" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" stylesheets="@../../style.css" text="Orders" />

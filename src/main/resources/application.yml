@@ -3,11 +3,11 @@ spring:
   application:
     name: myPos
   main:
-      web_environment: false
-      show_banner: false
+    web-environment: false
+    show_banner: false
   datasource:
     platform: mysql
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.1.23:3306/ormtest?useSSL=false&serverTimezone=UTC
     show_sql: true
     username: root
@@ -17,12 +17,9 @@ spring:
     #database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: create-drop
-
   autoconfigure:
   #exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
   logging:
     config: ./mypos/src/main/resources/log4j2.xml
-server:
-  port: 9000
 
 

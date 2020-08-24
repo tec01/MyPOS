@@ -2,7 +2,7 @@ package mypos.commons;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
-import mypos.management.products.Product;
+import mypos.model.Product;
 
 public class CustomTableCell extends TableCell<Product, Product> {
 
