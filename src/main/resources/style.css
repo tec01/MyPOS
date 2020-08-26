@@ -21,6 +21,10 @@
 #navBar{
 	-fx-background-color: #0F1515;
 }
+#imgCashRegister{
+	-fx-background-image: url("/mypos/img/cash_register.svg");
+	-fx-background-image: url("img/caja.png");
+}
 
 .navBarHeader{
   -fx-background-radius: 0.0px;
