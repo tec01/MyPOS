@@ -19,5 +19,5 @@ Project is created with:
 
 ## Setup
 To run the program:
-1. Clone the repository (using GitBash commands, or manually from GitHub)
+1. Clone the repository (using git commands or manually from GitHub)
 2. Run on the command line: ```mvn clean install javafx:run``` in the project folder (you might need maven on your environment variables)
