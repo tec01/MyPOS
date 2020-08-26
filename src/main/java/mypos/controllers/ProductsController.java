@@ -1,5 +1,8 @@
 package mypos.controllers;
 
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import mypos.commons.ConditionalOperator;
 import mypos.commons.CustomTableCell;
 import mypos.model.Product;
+import mypos.model.ProductCategory;
 import mypos.model.ProductType;
 import mypos.services.ProductsService;
 import org.apache.logging.log4j.LogManager;
@@ -33,30 +37,30 @@ public class ProductsController implements Initializable {
     @FXML
     private TextField txtFieldProductName, txtFieldProvider, txtFieldFamily;
     @FXML
-    private CheckComboBox<ProductType> comboProductType;
+    private CheckComboBox<ProductType> boxProductType;
     @FXML
     private ComboBox<ConditionalOperator> boxConditionalOperator;
     @FXML
     private Spinner<Double> spinnerPrice1;
     @FXML
-    private CheckBox chBoxWeighted;
+    private CheckComboBox<ProductCategory> boxProductCategory;
 
     @FXML
     private TableView<Product> productsTable;
     @FXML
-    private TableColumn<Product,Integer> columnID;
+    private TableColumn<Product,Number> idCol;
     @FXML
-    private TableColumn<Product,String> columnName;
+    private TableColumn<Product,String> nameCol;
     @FXML
-    private TableColumn<Product,BigDecimal> columnPrice;
+    private TableColumn<Product,Number> priceCol;
     @FXML
-    private TableColumn<Product,String> columnFamily;
+    private TableColumn<Product,String> familyCol;
     @FXML
-    private TableColumn<Product,String> columnType;
+    private TableColumn<Product,String> typeCol;
     @FXML
-    private TableColumn<Product,String> columnWeighted;
+    private TableColumn<Product,String> categoryCol;
     @FXML
-    private TableColumn<Product, CustomTableCell> columnActions;
+    private TableColumn<Product, CustomTableCell> actionCol;
 
     @FXML
     private Button btnSearch, btnReset;
@@ -70,18 +74,32 @@ public class ProductsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        productsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         //setup ConditionalOperator
         List<ConditionalOperator> condOperators = Arrays.asList(ConditionalOperator.values());
         boxConditionalOperator.setItems(FXCollections.observableList(condOperators));
         boxConditionalOperator.getSelectionModel().selectFirst();
         //setup product types
         List<ProductType> prodTypes = Arrays.asList(ProductType.values());
-        comboProductType.getItems().addAll(prodTypes);
-        comboProductType.getCheckModel().checkAll();
+        boxProductType.getItems().addAll(prodTypes);
+        boxProductType.getCheckModel().checkAll();
         //setup price spinner
         SpinnerValueFactory<Double> valueFactory1 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 200, 0, 1);
         spinnerPrice1.setValueFactory(valueFactory1);
         spinnerPrice1.setEditable(true);
+        //setup category combobox
+        List<ProductCategory> prodCategory = Arrays.asList(ProductCategory.values());
+        boxProductCategory.getItems().addAll(prodCategory);
+        boxProductCategory.getCheckModel().checkAll();
+        //setup table cells
+        idCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()));
+        nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
+        priceCol.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().getPrice().doubleValue()));
+        familyCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getFamily().getName()));
+        typeCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().name()));
+        categoryCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategory().name()));
+
+
     }
 
 
@@ -94,24 +112,31 @@ public class ProductsController implements Initializable {
         String productName = txtFieldProductName.getText();
         String provider = txtFieldProvider.getText();
         String family = txtFieldFamily.getText();
-        boolean weighted = chBoxWeighted.isSelected();
+        List<ProductType> prodTypes = boxProductType.getCheckModel().getCheckedItems();
+        List<ProductCategory> prodCategories = boxProductCategory.getCheckModel().getCheckedItems();
         Double price1 = spinnerPrice1.getValue();
         BigDecimal price = BigDecimal.valueOf(price1);
         ConditionalOperator condition = boxConditionalOperator.getValue();
-        ObservableList<ProductType> prodTypeList = comboProductType.getCheckModel().getCheckedItems();
-        if(productName.isEmpty() && provider.isEmpty() && family.isEmpty() && prodTypeList.size()==0){
-            productsService.findAll();
+
+        ObservableList<Product> products = FXCollections.observableArrayList();
+
+        if(productName.isEmpty() && provider.isEmpty() && family.isEmpty() && prodTypes.size()==0){
+            products.addAll(productsService.findAll());
         }else{
-            productsService.findAll(productName,provider,family,weighted,condition,price,prodTypeList);
+            products.addAll(productsService.findAll(productName,provider,family,prodCategories,condition,price,prodTypes));
         }
+
+        populateTable(products);
         LOG.debug("[search] end");
     }
     public void reset() {
         
     }
 
-    protected void populateTable(List<Product> products){
-
+    protected void populateTable(ObservableList<Product> products){
+        LOG.debug("[populateTable] init");
+        productsTable.setItems(products);
+        LOG.debug("[populateTable] end");
     }
     
     /* public void changePanel(ActionEvent event) throws IOException {

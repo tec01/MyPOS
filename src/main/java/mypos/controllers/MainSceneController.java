@@ -2,7 +2,6 @@ package mypos.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -53,25 +52,27 @@ public class MainSceneController  {
 	public void changePanel(ActionEvent event) throws IOException {
 		placeHolder.getChildren().clear();
 		if(event.getSource().equals(btnProducts)){
-			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Inventory.fxml"));
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Products.fxml"));
+		}else if(event.getSource().equals(btnFamilies)){
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Families.fxml"));
 		}else if(event.getSource().equals(btnInvoices)) {
-			placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/mypos/fxml/Tickets.fxml")));
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Tickets.fxml"));
 		}else if(event.getSource().equals(btnTickets)) {
-			placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/mypos/fxml/Invoices.fxml")));
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Invoices.fxml"));
 		}else if(event.getSource().equals(btnOrders)) {
-			placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/mypos/fxml/Orders.fxml")));
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Orders.fxml"));
 		}else if(event.getSource().equals(btnReports)) {
-			placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/mypos/fxml/Reports.fxml")));
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Reports.fxml"));
 		}else if(event.getSource().equals(btnCustomers)) {
-			placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/mypos/fxml/Customers.fxml")));
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Customers.fxml"));
 		}else if(event.getSource().equals(btnEmployees)) {
-			placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/mypos/fxml/Employees.fxml")));
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Employees.fxml"));
 		}else if(event.getSource().equals(btnPreferences)) {
-			placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/mypos/fxml/Database.fxml")));
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Database.fxml"));
 		}else if(event.getSource().equals(btnPreferences)) {
-			placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/mypos/fxml/Printers.fxml")));
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Printers.fxml"));
 		}else if(event.getSource().equals(btnPreferences)) {
-			placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource("/mypos/fxml/Permissions.fxml")));
+			placeHolder.getChildren().add((Node) springFXMLLoader.load("/mypos/fxml/Permissions.fxml"));
 		}
 		
 	}

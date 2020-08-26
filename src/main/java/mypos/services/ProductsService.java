@@ -4,8 +4,8 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import mypos.commons.ConditionalOperator;
 import mypos.model.Product;
+import mypos.model.ProductCategory;
 import mypos.model.ProductType;
-import mypos.model.QFamily;
 import mypos.model.QProduct;
 import mypos.repositories.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,23 +36,26 @@ public class ProductsService {
         return repository.findAll();
     }
 
-    public List<Product> findAll(String name, String provider, String family, Boolean weighted, ConditionalOperator condition,
+    public List<Product> findAll(String name, String provider, String family, List<ProductCategory> categories, ConditionalOperator condition,
                                  BigDecimal price, List<ProductType> productTypes){
         JPAQueryFactory query = new JPAQueryFactory(entityManager);
 
         QProduct qProduct= QProduct.product;
-        QFamily qFamily = QFamily.family;
-
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         if(!name.isEmpty())
-            booleanBuilder.and(qProduct.name.likeIgnoreCase(name));
+            booleanBuilder.and(qProduct.name.containsIgnoreCase(name));
         if(!provider.isEmpty())
-            booleanBuilder.and(qProduct.provider.eq(provider));
+            booleanBuilder.and(qProduct.provider.containsIgnoreCase(provider));
         if(!family.isEmpty())
-            booleanBuilder.and(qProduct.family.eq(qFamily));
-        if(weighted)
-            booleanBuilder.and(qProduct.weighted.eq(true));
+            booleanBuilder.and(qProduct.family.name.containsIgnoreCase(family));
+
+        if(categories.size()==2) {
+            booleanBuilder.and(qProduct.category.in(categories.get(0), categories.get(1)));
+        }else {
+            booleanBuilder.and(qProduct.category.eq(categories.get(0))) ;
+        }
+
         if(!condition.equals(ConditionalOperator.NONE) && price!=null ){
             switch (condition){
                 case EQUAL:

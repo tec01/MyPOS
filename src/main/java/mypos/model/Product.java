@@ -36,8 +36,9 @@ public class Product {
     @Column ( name = "PRODUCT_TYPE", nullable = false)
     @Enumerated(EnumType.STRING)
     private ProductType PRODUCT_TYPE;
-    @Column( name = "WEIGHTED", nullable = false)
-    private boolean weighted;
+    @Column( name = "CATEGORY", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ProductCategory category;
     
     public Product() {
         
@@ -104,12 +105,12 @@ public class Product {
         this.PRODUCT_TYPE = type;
     }
 
-    public boolean isWeighted() {
-        return weighted;
+    public ProductCategory getCategory() {
+        return category;
     }
 
-    public void setWeighted(boolean weighted) {
-        this.weighted = weighted;
+    public void setCategory(ProductCategory category) {
+        this.category = category;
     }
 
     public String getProvider() {
