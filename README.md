@@ -13,5 +13,3 @@ Project is created with:
 * Open JDK 13
 * Springboot 2.3.2
 * JavaFX 13 
-
-```
