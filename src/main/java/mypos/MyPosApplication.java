@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -36,8 +37,10 @@ public class MyPosApplication extends Application{
     }
     @Override
     public void start(Stage stage) {
-       stage.setScene(new Scene(rootNode));
-       stage.show();
+        Scene scene = new Scene(rootNode);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
     }
 
     @Override

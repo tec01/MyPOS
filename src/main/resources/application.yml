@@ -22,4 +22,6 @@ spring:
   logging:
     config: ./mypos/src/main/resources/log4j2.xml
 
-
+fxml:
+  main-panels:
+    common-width: 1000

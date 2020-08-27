@@ -1,26 +1,19 @@
-/***** STAGE ******/
-#btnMinimize{
-	-fx-background-image: url("img/minimize.png");
-    -fx-background-repeat: no-repeat;   
-    -fx-background-position: center bottom;
-    -fx-background-size:30.0;
-}
-#btnMaximize{
-	-fx-background-image: url("img/maximize.png");
-    -fx-background-repeat: no-repeat;   
-    -fx-background-position: center center;
-    -fx-background-size:30.0;
-}
+/***** STAGE - WINDOW ******/
 #btnClose{
-	-fx-background-image: url("img/close.png");
+	-fx-background-image: url("mypos/img/close.png");
     -fx-background-repeat: no-repeat;   
     -fx-background-position: center center;
-    -fx-background-size:40.0; 
+    -fx-background-size:40.0;
+    -fx-background-color:none;
 }
 /****** MAIN PANEL *****/
 #navBar{
 	-fx-background-color: #0F1515;
 }
+#mainStackPane{
+-fx-background-image: url("mypos/img/pattern_background.jpg");
+-fx-background-repeat: repeat;
+    }
 #imgCashRegister{
 	-fx-background-image: url("/mypos/img/cash_register.svg");
 	-fx-background-image: url("img/caja.png");
@@ -40,8 +33,13 @@
 	-fx-font-size:15.0px;
 }
 /*****top bar */
-#mainSceneTopBar{
-  -fx-background-color: #5A8E9D;
+.windowTopBar{
+  -fx-background-color: #CBBBA8;
+}
+#boxUser{
+-fx-border-style: solid;
+ -fx-border-width:0 0 1 0;
+  -fx-border-color:black;
 }
 
 /***** LEFT PANEL - NAVIGATION BAR */
@@ -63,12 +61,11 @@
 }
 
 #btnMenu{
-	-fx-background-radius: 0.0px;
-		-fx-background-image: url("mypos/img/menu.png");
+	-fx-background-image: url("mypos/img/menu.png");
 	 -fx-background-repeat: no-repeat;   
     -fx-background-position: center center;
-    -fx-background-size:25.0; 
-}
+    -fx-background-size:30px;
+    }
 
 
 /****** NUMPAD ******/

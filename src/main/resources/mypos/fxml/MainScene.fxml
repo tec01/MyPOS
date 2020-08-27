@@ -2,13 +2,14 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <BorderPane id="mainPanel" fx:id="mainPanel" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypos.controllers.MainSceneController">
 	<left>
 		<VBox id="navBar" fx:id="navBar" alignment="TOP_CENTER" depthTest="DISABLE" spacing="2.0" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
-            <Label id="btnDashBoard" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" stylesheets="@../../style.css" text="POS">
+            <Label id="btnDashBoard" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="50.0" stylesheets="@../../style.css" text="POS">
                <font>
                   <Font name="Arial Narrow Bold" size="36.0" />
                </font>
@@ -78,26 +79,37 @@
 	<center>
 		<BorderPane fx:id="mainSceneCenterPanel" BorderPane.alignment="TOP_CENTER">
 			<top>
-				<BorderPane id="mainSceneTopBar" fx:id="mainSceneTopBar" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="52.0" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
+				<BorderPane fx:id="mainSceneTopBar" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="52.0" styleClass="windowTopBar" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
 					<left>
-						<Button id="btnMenu" fx:id="btnMenu" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" stylesheets="@../../style.css" BorderPane.alignment="CENTER" />
+						<Button id="btnMenu" fx:id="btnMenu" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="windowTopBar" stylesheets="@../../style.css" BorderPane.alignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
 					</left>
 					<right>
-						<Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" text="Exit" BorderPane.alignment="CENTER" />
+						<Button id="btnClose" fx:id="btnClose" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-image: \@mypos\img\close.svg;" stylesheets="@../../style.css" BorderPane.alignment="CENTER">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
 					</right>
 					<center>
 						<HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" spacing="10.0" BorderPane.alignment="CENTER">
 							<children>
 								<Label text="User" />
-								<ComboBox maxHeight="1.7976931348623157E308" prefWidth="150.0" />
+								<ComboBox id="boxUser" fx:id="boxUser" maxHeight="1.7976931348623157E308" prefWidth="150.0" styleClass="windowTopBar" stylesheets="@../../style.css">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ComboBox>
 							</children>
 						</HBox>
 					</center>
+               <cursor>
+                  <Cursor fx:constant="OPEN_HAND" />
+               </cursor>
 				</BorderPane>
 			</top>
 			<center>
-				<StackPane fx:id="placeHolder" BorderPane.alignment="CENTER">
-                </StackPane>
+            <BorderPane fx:id="placeHolder" BorderPane.alignment="CENTER" />
 			</center>
 		</BorderPane>
 	</center>

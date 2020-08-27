@@ -1,4 +1,4 @@
-package mypos.commons;
+package mypos.model;
 
 public enum PaymentMethod {
     CASH("Cash"), CARD("Card");
