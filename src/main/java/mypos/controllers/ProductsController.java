@@ -5,10 +5,12 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import mypos.commons.ConditionalOperator;
 import mypos.commons.CustomTableCell;
 import mypos.model.Product;
@@ -21,6 +23,7 @@ import org.controlsfx.control.CheckComboBox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.Arrays;
@@ -34,6 +37,8 @@ public class ProductsController implements Initializable {
 
     @Autowired
     private ProductsService productsService;
+    @FXML
+    private Button btnNew,btnSearch, btnReset;
     @FXML
     private TextField txtFieldProductName, txtFieldProvider, txtFieldFamily;
     @FXML
@@ -61,11 +66,10 @@ public class ProductsController implements Initializable {
     private TableColumn<Product,String> categoryCol;
     @FXML
     private TableColumn<Product, CustomTableCell> actionCol;
-
     @FXML
-    private Button btnSearch, btnReset;
+    private BorderPane productsPanel;
     @FXML
-    private StackPane placeHolder;
+    private FlowPane productsInteractionBar;
 
     public ProductsController(){
 
@@ -138,21 +142,9 @@ public class ProductsController implements Initializable {
         productsTable.setItems(products);
         LOG.debug("[populateTable] end");
     }
-    
-    /* public void changePanel(ActionEvent event) throws IOException {
 
+    public void changePanel(ActionEvent event) throws IOException {
 
-         * placeHolder.getChildren().clear(); if(event.getSource().equals(btnProducts)){
-         * placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource(
-         * "/mypos/fxml/Products.fxml"))); }else
-         * if(event.getSource().equals(btnFamilies)) {
-         * placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource(
-         * "/mypos/fxml/Families.fxml"))); }else
-         * if(event.getSource().equals(btnInvoices)) {
-         * placeHolder.getChildren().add(FXMLLoader.load(getClass().getResource(
-         * "/mypos/fxml/Invoices.fxml"))); }
-
-
-    } */
+    }
 
 }

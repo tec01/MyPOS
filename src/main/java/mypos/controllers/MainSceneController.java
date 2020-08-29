@@ -1,5 +1,8 @@
 package mypos.controllers;
 
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,9 +54,15 @@ public class MainSceneController implements Initializable {
 	@FXML
 	private BorderPane placeHolder;
 	@FXML
+	private BorderPane mainPanel;
+	@FXML
 	private VBox navBar;
 	@FXML
 	private BorderPane mainSceneCenterPanel;
+	@FXML
+	private JFXHamburger hamburger;
+	@FXML
+	private JFXDrawer menuDrawer;
 
 	private Stage stage;
 	private Double xOffset;
@@ -65,10 +74,26 @@ public class MainSceneController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		mainSceneCenterPanel.setPrefWidth(commonWidth);
 
-	}
+		//menu drawer initial position
+		menuDrawer.setSidePane(navBar);
+		menuDrawer.open();
+		mainPanel.setLeft(menuDrawer);
+		//menu drawer animation
+		HamburgerBackArrowBasicTransition transition1 = new HamburgerBackArrowBasicTransition(hamburger);
+		transition1.setRate(-1);
+		hamburger.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->{
+			transition1.setRate(transition1.getRate()*-1);
+			transition1.play();
+			if(menuDrawer.isOpened()){
+				menuDrawer.close();
+				mainPanel.setLeft(null);
+			}else{
+				menuDrawer.open();
+				mainPanel.setLeft(menuDrawer);
+			}
+		});
 
-	public void closeProgramm() {
-		System.exit(0);
+
 	}
 
 	public void changePanel(ActionEvent event) throws IOException {

@@ -3,10 +3,27 @@
 	-fx-background-image: url("mypos/img/close.png");
     -fx-background-repeat: no-repeat;   
     -fx-background-position: center center;
-    -fx-background-size:40.0;
+    -fx-background-size:30.0;
     -fx-background-color:none;
 }
 /****** MAIN PANEL *****/
+
+.jfx-hamburger StackPane{
+    -fx-pref-width:30;
+    -fx-pref-height:5;
+}
+
+/***** WINDOW BAR */
+.windowTopBar{
+  -fx-background-color: #CBBBA8;
+}
+#boxUser{
+-fx-border-style: solid;
+ -fx-border-width:0 0 1 0;
+  -fx-border-color:black;
+}
+
+/***** NAVIGATION BAR */
 #navBar{
 	-fx-background-color: #0F1515;
 }
@@ -31,23 +48,20 @@
 	-fx-background-radius: 0.0px;
 	-fx-background-color: #FFFFFF;
 	-fx-font-size:15.0px;
+	-fx-pref-height:50;
+	-fx-border-color:#A9A9A9;
+	-fx-border-width:0 0 1 0;
 }
-/*****top bar */
-.windowTopBar{
-  -fx-background-color: #CBBBA8;
+.navBarButton:hover {
+	-fx-background-color:#DCDCDC;
 }
-#boxUser{
--fx-border-style: solid;
- -fx-border-width:0 0 1 0;
-  -fx-border-color:black;
-}
-
-/***** LEFT PANEL - NAVIGATION BAR */
 #btnDashBoard{
 	-fx-background-radius: 0.0px;
 	-fx-background-color: #37606B;
 }
-
+#btnPos{
+    -fx-pref-height:90;
+}
 
 #btnManagement{
 	-fx-background-radius: 0.0px;

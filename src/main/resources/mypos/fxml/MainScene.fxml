@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
@@ -8,7 +10,8 @@
 <?import javafx.scene.text.Font?>
 <BorderPane id="mainPanel" fx:id="mainPanel" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypos.controllers.MainSceneController">
 	<left>
-		<VBox id="navBar" fx:id="navBar" alignment="TOP_CENTER" depthTest="DISABLE" spacing="2.0" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
+        <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="130.0" BorderPane.alignment="CENTER">
+		<VBox id="navBar" fx:id="navBar" alignment="TOP_CENTER" depthTest="DISABLE" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
             <Label id="btnDashBoard" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="50.0" stylesheets="@../../style.css" text="POS">
                <font>
                   <Font name="Arial Narrow Bold" size="36.0" />
@@ -25,20 +28,21 @@
                         </ImageView>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Point of sale" />
                   </VBox>
-               </graphic></Button>
+               </graphic>
+            </Button>
             <Button fx:id="btnDashBoard11" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" prefHeight="40.0" styleClass="navBarHeader" stylesheets="@../../style.css" text="Management" textAlignment="CENTER">
                <font>
                   <Font name="Arial Bold" size="19.0" />
                </font>
             </Button>
-				<Button fx:id="btnProducts" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" text="Products" />
-         <Button fx:id="btnFamilies" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" text="Families" />
-				<Button fx:id="btnTickets" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" stylesheets="@../../style.css" text="Tickets" />
-				<Button fx:id="btnInvoices" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" stylesheets="@../../style.css" text="Invoices" />
-				<Button fx:id="btnOrders" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" stylesheets="@../../style.css" text="Orders" />
-				<Button fx:id="btnReports" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" stylesheets="@../../style.css" text="Reports" />
-         <Button fx:id="btnCustomers" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" stylesheets="@../../style.css" text="Customers" />
-         <Button fx:id="btnEmployees" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="30.0" styleClass="navBarButton" stylesheets="@../../style.css" text="Employees" />
+				<Button fx:id="btnProducts" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" styleClass="navBarButton" stylesheets="@../../style.css" text="Products" />
+         <Button fx:id="btnFamilies" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" styleClass="navBarButton" stylesheets="@../../style.css" text="Families" />
+				<Button fx:id="btnTickets" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" styleClass="navBarButton" stylesheets="@../../style.css" text="Tickets" />
+				<Button fx:id="btnInvoices" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" styleClass="navBarButton" stylesheets="@../../style.css" text="Invoices" />
+				<Button fx:id="btnOrders" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" styleClass="navBarButton" stylesheets="@../../style.css" text="Orders" />
+				<Button fx:id="btnReports" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" styleClass="navBarButton" stylesheets="@../../style.css" text="Reports" />
+         <Button fx:id="btnCustomers" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" styleClass="navBarButton" stylesheets="@../../style.css" text="Customers" />
+         <Button fx:id="btnEmployees" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" styleClass="navBarButton" stylesheets="@../../style.css" text="Employees" />
             <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="40.0" styleClass="navBarHeader" stylesheets="@../../style.css" text="Preferences" textAlignment="CENTER" />
 				<Button fx:id="btnPreferences" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="80.0" styleClass="navBarButton" stylesheets="@../../style.css">
                <graphic>
@@ -47,7 +51,8 @@
                         </ImageView>
                         <Label text="Database" />
                   </VBox>
-               </graphic></Button>
+               </graphic>
+            </Button>
             <Button fx:id="btnPreferences3" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changePanel" prefHeight="80.0" styleClass="navBarButton" stylesheets="@../../style.css">
                <graphic>
                   <VBox alignment="CENTER">
@@ -72,6 +77,7 @@
 				<Insets />
 			</opaqueInsets>
 		</VBox>
+        </JFXDrawer>
 	</left>
 	<center>
 
@@ -79,13 +85,7 @@
 	<center>
 		<BorderPane fx:id="mainSceneCenterPanel" BorderPane.alignment="TOP_CENTER">
 			<top>
-				<BorderPane fx:id="mainSceneTopBar" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="52.0" styleClass="windowTopBar" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
-					<left>
-						<Button id="btnMenu" fx:id="btnMenu" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="50.0" styleClass="windowTopBar" stylesheets="@../../style.css" BorderPane.alignment="CENTER">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-					</left>
+				<BorderPane fx:id="mainSceneTopBar" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="50.0" styleClass="windowTopBar" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
 					<right>
 						<Button id="btnClose" fx:id="btnClose" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-image: \@mypos\img\close.svg;" stylesheets="@../../style.css" BorderPane.alignment="CENTER">
                      <cursor>
@@ -99,13 +99,22 @@
 								<ComboBox id="boxUser" fx:id="boxUser" maxHeight="1.7976931348623157E308" prefWidth="150.0" styleClass="windowTopBar" stylesheets="@../../style.css">
                            <cursor>
                               <Cursor fx:constant="HAND" />
-                           </cursor></ComboBox>
+                           </cursor>
+                           <HBox.margin>
+                              <Insets bottom="5.0" />
+                           </HBox.margin></ComboBox>
 							</children>
 						</HBox>
 					</center>
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
+               <left>
+                  <JFXHamburger fx:id="hamburger" prefWidth="40.0" BorderPane.alignment="CENTER" />
+               </left>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
 				</BorderPane>
 			</top>
 			<center>
