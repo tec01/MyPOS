@@ -8,9 +8,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane id="mainPanel" fx:id="mainPanel" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypos.controllers.MainSceneController">
+<BorderPane fx:id="mainPanel" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypos.controllers.MainSceneController">
 	<left>
-        <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="130.0" BorderPane.alignment="CENTER">
+        <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="130.0" maxWidth="-Infinity" BorderPane.alignment="CENTER">
 		<VBox id="navBar" fx:id="navBar" alignment="TOP_CENTER" depthTest="DISABLE" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
             <Label id="btnDashBoard" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="50.0" stylesheets="@../../style.css" text="POS">
                <font>
@@ -83,14 +83,15 @@
 
 	</center>
 	<center>
-		<BorderPane fx:id="mainSceneCenterPanel" BorderPane.alignment="TOP_CENTER">
+		<BorderPane fx:id="mainSceneCenterPanel" maxWidth="-Infinity" minWidth="-Infinity" BorderPane.alignment="TOP_CENTER">
 			<top>
-				<BorderPane fx:id="mainSceneTopBar" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="50.0" styleClass="windowTopBar" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
+				<BorderPane fx:id="mainSceneTopBar" cacheShape="false" maxWidth="-Infinity" minWidth="-Infinity" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="50.0" prefWidth="700.0" scaleShape="false" styleClass="windowTopBar" stylesheets="@../../style.css">
 					<right>
 						<Button id="btnClose" fx:id="btnClose" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-image: \@mypos\img\close.svg;" stylesheets="@../../style.css" BorderPane.alignment="CENTER">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                  </Button>
 					</right>
 					<center>
 						<HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" spacing="10.0" BorderPane.alignment="CENTER">
@@ -102,7 +103,8 @@
                            </cursor>
                            <HBox.margin>
                               <Insets bottom="5.0" />
-                           </HBox.margin></ComboBox>
+                           </HBox.margin>
+                        </ComboBox>
 							</children>
 						</HBox>
 					</center>
@@ -110,16 +112,13 @@
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
                <left>
-                  <JFXHamburger fx:id="hamburger" prefWidth="40.0" BorderPane.alignment="CENTER" />
+                  <JFXHamburger fx:id="hamburger" prefWidth="40.0" viewOrder="1.0" BorderPane.alignment="CENTER" />
                </left>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
 				</BorderPane>
 			</top>
-			<center>
-            <BorderPane fx:id="placeHolder" BorderPane.alignment="CENTER" />
-			</center>
+         <center>
+            <BorderPane fx:id="placeHolder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER" />
+         </center>
 		</BorderPane>
 	</center>
 </BorderPane>

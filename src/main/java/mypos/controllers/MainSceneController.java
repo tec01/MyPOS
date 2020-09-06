@@ -3,7 +3,11 @@ package mypos.controllers;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.beans.value.WritableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +20,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import mypos.commons.SpringFXMLLoader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +34,7 @@ import java.util.ResourceBundle;
 @Component
 public class MainSceneController implements Initializable {
 
-	@Value("${fxml.main-panels.common-width}")
+	@Value("${fxml.main_panels.initial_width}")
 	private Double commonWidth;
 	@Autowired
 	private ConfigurableApplicationContext applicationContext;
@@ -63,6 +68,8 @@ public class MainSceneController implements Initializable {
 	private JFXHamburger hamburger;
 	@FXML
 	private JFXDrawer menuDrawer;
+	@FXML
+	private BorderPane mainSceneTopBar;
 
 	private Stage stage;
 	private Double xOffset;
@@ -75,24 +82,80 @@ public class MainSceneController implements Initializable {
 		mainSceneCenterPanel.setPrefWidth(commonWidth);
 
 		//menu drawer initial position
+		mainPanel.setLeft(menuDrawer);
 		menuDrawer.setSidePane(navBar);
 		menuDrawer.open();
-		mainPanel.setLeft(menuDrawer);
+
 		//menu drawer animation
 		HamburgerBackArrowBasicTransition transition1 = new HamburgerBackArrowBasicTransition(hamburger);
-		transition1.setRate(-1);
-		hamburger.addEventFilter(MouseEvent.MOUSE_CLICKED, (e)->{
-			transition1.setRate(transition1.getRate()*-1);
+		transition1.setRate(1);
+		transition1.play();
+		hamburger.addEventFilter(MouseEvent.MOUSE_PRESSED, (e)->{
+			transition1.setRate(transition1.getRate()* -1);
 			transition1.play();
 			if(menuDrawer.isOpened()){
 				menuDrawer.close();
-				mainPanel.setLeft(null);
+				moveMainPanel("LEFT");
 			}else{
+				moveMainPanel("RIGHT");
 				menuDrawer.open();
-				mainPanel.setLeft(menuDrawer);
 			}
 		});
 
+	}
+
+	private void moveMainPanel(String value){
+
+		WritableValue<Double> xPosition = new WritableValue<>() {
+			@Override
+			public Double getValue() {
+				return mainSceneCenterPanel.getTranslateX();
+			}
+
+			@Override
+			public void setValue(Double value) {
+				mainSceneCenterPanel.setTranslateX(value);
+			}
+		};
+		WritableValue<Double> prefWidth = new WritableValue<>() {
+			@Override
+			public Double getValue() {
+				return mainSceneTopBar.getPrefWidth();
+			}
+
+			@Override
+			public void setValue(Double value) {
+				mainSceneTopBar.setPrefWidth(value);
+			}
+		};
+		System.out.println("init prefWidth:"+mainSceneTopBar.getPrefWidth());
+
+		KeyValue positionKeyValue = null;
+		KeyValue widthKeyValue = null;
+		switch (value){
+			case "LEFT":
+				positionKeyValue = new KeyValue(xPosition,  xPosition.getValue()-menuDrawer.getWidth());
+				widthKeyValue = new KeyValue(prefWidth,  mainSceneTopBar.getPrefWidth()+menuDrawer.getWidth());
+				System.out.println("close width expected:"+(prefWidth.getValue()+menuDrawer.getWidth()));
+				break;
+			case "RIGHT":
+				positionKeyValue = new KeyValue(xPosition,  xPosition.getValue()+menuDrawer.getWidth());
+				widthKeyValue = new KeyValue(prefWidth,  mainSceneTopBar.getPrefWidth()-menuDrawer.getWidth());
+				System.out.println("open width expected:"+(prefWidth.getValue()-menuDrawer.getWidth()));
+				break;
+			default:
+				break;
+		}
+		KeyFrame keyFramePosition = new KeyFrame(Duration.millis(450), positionKeyValue );
+		KeyFrame keyFrameWidth = new KeyFrame(Duration.millis(445),widthKeyValue );
+
+
+		Timeline animTimer = new Timeline();
+		animTimer.setCycleCount(1);
+		animTimer.setAutoReverse(false);
+		animTimer.getKeyFrames().addAll(keyFramePosition, keyFrameWidth);
+		animTimer.play();
+		System.out.println("result width:"+mainSceneTopBar.getPrefWidth());
 
 	}
 

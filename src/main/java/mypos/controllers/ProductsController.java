@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.VBox;
 import mypos.commons.ConditionalOperator;
 import mypos.commons.CustomTableCell;
 import mypos.model.Product;
@@ -69,7 +70,10 @@ public class ProductsController implements Initializable {
     @FXML
     private BorderPane productsPanel;
     @FXML
-    private FlowPane productsInteractionBar;
+    private FlowPane searchPanel;
+    @FXML
+    private VBox crudPanel;
+
 
     public ProductsController(){
 
@@ -79,22 +83,27 @@ public class ProductsController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         productsTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
         //setup ConditionalOperator
         List<ConditionalOperator> condOperators = Arrays.asList(ConditionalOperator.values());
         boxConditionalOperator.setItems(FXCollections.observableList(condOperators));
         boxConditionalOperator.getSelectionModel().selectFirst();
+
         //setup product types
         List<ProductType> prodTypes = Arrays.asList(ProductType.values());
         boxProductType.getItems().addAll(prodTypes);
         boxProductType.getCheckModel().checkAll();
+
         //setup price spinner
         SpinnerValueFactory<Double> valueFactory1 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 200, 0, 1);
         spinnerPrice1.setValueFactory(valueFactory1);
         spinnerPrice1.setEditable(true);
+
         //setup category combobox
         List<ProductCategory> prodCategory = Arrays.asList(ProductCategory.values());
         boxProductCategory.getItems().addAll(prodCategory);
         boxProductCategory.getCheckModel().checkAll();
+
         //setup table cells
         idCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getId()));
         nameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getName()));
@@ -103,6 +112,8 @@ public class ProductsController implements Initializable {
         typeCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getType().name()));
         categoryCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getCategory().name()));
 
+        //setup crud panel as non visible
+        productsPanel.setRight(null);
 
     }
 
@@ -143,8 +154,14 @@ public class ProductsController implements Initializable {
         LOG.debug("[populateTable] end");
     }
 
-    public void changePanel(ActionEvent event) throws IOException {
+    public void openNewEditPanel(ActionEvent event) throws IOException {
+        productsPanel.setTop(null);
+        productsPanel.setRight(crudPanel);
+    }
 
+    public void openSearchPanel(){
+        productsPanel.setTop(searchPanel);
+        productsPanel.setRight(null);
     }
 
 }

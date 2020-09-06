@@ -98,4 +98,12 @@
     -fx-background-size:30.0;
 }
 
+/** NEW PRODUCT**/
+.labelsNewProduct{
+    -fx-pref-width:70;
+}
+.fieldNewProduct{
+    -fx-pref-width:150;
+}
+
 

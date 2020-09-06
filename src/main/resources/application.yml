@@ -23,5 +23,5 @@ spring:
     config: ./mypos/src/main/resources/log4j2.xml
 
 fxml:
-  main-panels:
-    common-width: 1000
+  main_panels:
+    initial_width: 700
