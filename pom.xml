@@ -7,9 +7,20 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>5.2.8.RELEASE</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>2.3.5.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
+			<version>2.3.5.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,16 +54,7 @@
 			<version>13</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>2.12.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.13.2</version>
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.controlsfx</groupId>
@@ -119,7 +121,7 @@
 					<execution>
 						<id>default-cli</id>
 						<configuration>
-							<mainClass>mypos.MyPosApplication</mainClass>
+							<mainClass>mypos.MyPosSpringApp</mainClass>
 						</configuration>
 					</execution>
 					<!-- Configuration for debugging -->
@@ -129,7 +131,7 @@
 							<options>
 								<option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:62470</option>
 							</options>
-							<mainClass>mypos.MyPosApplication</mainClass>
+							<mainClass>mypos.MyPosSpringApp</mainClass>
 						</configuration>
 					</execution>
 				</executions>

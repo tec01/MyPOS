@@ -22,8 +22,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import mypos.commons.SpringFXMLLoader;
+import mypos.services.StageManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -34,8 +34,6 @@ import java.util.ResourceBundle;
 @Component
 public class MainSceneController implements Initializable {
 
-	@Value("${fxml.main_panels.initial_width}")
-	private Double commonWidth;
 	@Autowired
 	private ConfigurableApplicationContext applicationContext;
 	@Autowired
@@ -74,12 +72,20 @@ public class MainSceneController implements Initializable {
 	private Stage stage;
 	private Double xOffset;
 	private Double yOffset;
-	public MainSceneController(){
 
+	private StageManager stageManager;
+
+	public MainSceneController(StageManager stageManager){
+		this.stageManager = stageManager;
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
-		mainSceneCenterPanel.setPrefWidth(commonWidth);
+
+
+		mainSceneCenterPanel.setPrefWidth(stageManager.getWidth());
+		mainSceneCenterPanel.setPrefHeight(stageManager.getHeight());
+
+		mainSceneTopBar.setPrefWidth(stageManager.getWidth());
 
 		//menu drawer initial position
 		mainPanel.setLeft(menuDrawer);

@@ -1,5 +1,8 @@
 package mypos.controllers;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -14,6 +17,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import mypos.commons.ConditionalOperator;
 import mypos.commons.CustomTableCell;
+import mypos.model.Family;
 import mypos.model.Product;
 import mypos.model.ProductCategory;
 import mypos.model.ProductType;
@@ -38,19 +42,25 @@ public class ProductsController implements Initializable {
 
     @Autowired
     private ProductsService productsService;
+    /* search panel nodes */
     @FXML
-    private Button btnNew,btnSearch, btnReset;
+    private JFXButton btnNew,btnSearch, btnReset;
     @FXML
-    private TextField txtFieldProductName, txtFieldProvider, txtFieldFamily;
+    private JFXTextField txtFieldProvider, txtFieldProductName;
     @FXML
-    private CheckComboBox<ProductType> boxProductType;
+    private JFXComboBox<ConditionalOperator> boxConditionalOperator;
     @FXML
-    private ComboBox<ConditionalOperator> boxConditionalOperator;
+    private JFXComboBox<Family> txtFieldFamily;
     @FXML
     private Spinner<Double> spinnerPrice1;
     @FXML
+    private CheckComboBox<ProductType> boxProductType;
+    @FXML
     private CheckComboBox<ProductCategory> boxProductCategory;
 
+    /* crud panel nodes */
+    @FXML
+    private Button btnReset2,btnCancel;
     @FXML
     private TableView<Product> productsTable;
     @FXML
@@ -126,7 +136,8 @@ public class ProductsController implements Initializable {
         LOG.debug("[search] init");
         String productName = txtFieldProductName.getText();
         String provider = txtFieldProvider.getText();
-        String family = txtFieldFamily.getText();
+        String family = txtFieldFamily.getSelectionModel().isEmpty()?
+                "":txtFieldFamily.getSelectionModel().getSelectedItem().getName();
         List<ProductType> prodTypes = boxProductType.getCheckModel().getCheckedItems();
         List<ProductCategory> prodCategories = boxProductCategory.getCheckModel().getCheckedItems();
         Double price1 = spinnerPrice1.getValue();
@@ -154,7 +165,7 @@ public class ProductsController implements Initializable {
         LOG.debug("[populateTable] end");
     }
 
-    public void openNewEditPanel(ActionEvent event) throws IOException {
+    public void openCrudPanel(ActionEvent event) throws IOException {
         productsPanel.setTop(null);
         productsPanel.setRight(crudPanel);
     }

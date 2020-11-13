@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane fx:id="mainPanel" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypos.controllers.MainSceneController">
+<BorderPane fx:id="mainPanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypos.controllers.MainSceneController">
 	<left>
         <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="130.0" maxWidth="-Infinity" BorderPane.alignment="CENTER">
 		<VBox id="navBar" fx:id="navBar" alignment="TOP_CENTER" depthTest="DISABLE" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">

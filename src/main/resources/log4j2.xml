@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" monitorInterval="30">
+<Configuration status="debug" >
 
 	<!-- Logging Properties -->
 	<Properties>
 		<Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss} %p %m%n</Property>
-		<Property name="APP_LOG_ROOT">D:\projects\tpv\workspace\MyPOS\logs
-		</Property>
+		<Property name="BASE_PATH">/home/tom/MyPOS</Property>-->
 	</Properties>
 
 	<Appenders>
@@ -65,39 +64,21 @@
 			<DefaultRolloverStrategy max="10" />
 		</RollingFile>
 
-		<RollingFile name="perfLog"
-			fileName="${APP_LOG_ROOT}/app-perf.log"
-			filePattern="${APP_LOG_ROOT}/app-perf-%d{yyyy-MM-dd}-%i.log">
-			<PatternLayout pattern="${LOG_PATTERN}" />
-			<Policies>
-				<SizeBasedTriggeringPolicy size="19500KB" />
-			</Policies>
-			<DefaultRolloverStrategy max="1" />
-		</RollingFile>
-
-		<RollingFile name="traceLog"
-			fileName="${APP_LOG_ROOT}/app-trace.log"
-			filePattern="${APP_LOG_ROOT}/app-trace-%d{yyyy-MM-dd}-%i.log">
-			<PatternLayout pattern="${LOG_PATTERN}" />
-			<Policies>
-				<SizeBasedTriggeringPolicy size="19500KB" />
-			</Policies>
-			<DefaultRolloverStrategy max="1" />
-		</RollingFile>
 
 		<!-- <category name="org.springframework"> <priority value="debug" /> </category> -->
 
 	</Appenders>
 
 	<Loggers>
-		<Logger name="org.springframework" level="ALL" additivity="false">
-			<AppenderRef ref="Console" />
+		<Logger name="mypos" level="debug" additivity="false">
+			<AppenderRef ref="Console" level="debug"/>
 		</Logger>
-		
-		<Root level="ALL" >
+		<Logger name="org.springframework" level="debug" additivity="false">
+			<AppenderRef ref="Console" level="debug"/>
+		</Logger>
+		<Root level="debug" >
 			<AppenderRef ref="Console" />
 		</Root>
-
 	</Loggers>
 
 </Configuration>

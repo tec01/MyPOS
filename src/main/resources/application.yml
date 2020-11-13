@@ -20,8 +20,8 @@ spring:
   autoconfigure:
   #exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration, org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration
   logging:
-    config: ./mypos/src/main/resources/log4j2.xml
+    config: ./mypos/log4j2.xml
 
-fxml:
-  main_panels:
-    initial_width: 700
+display:
+  default_width: 1000
+  default_height: 800
