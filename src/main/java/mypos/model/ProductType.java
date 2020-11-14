@@ -2,7 +2,7 @@ package mypos.model;
 
 public enum ProductType {
 
-    ELABORATED, MODIFIED, RESALE;
+    ELABORATED, MODIFIED, RESALE
 
 
 }

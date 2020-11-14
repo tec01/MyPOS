@@ -4,7 +4,7 @@
 	<!-- Logging Properties -->
 	<Properties>
 		<Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss} %p %m%n</Property>
-		<Property name="BASE_PATH">/home/tom/MyPOS</Property>-->
+		<Property name="APP_LOG_ROOT">/home/tom/MyPOS</Property>-->
 	</Properties>
 
 	<Appenders>
