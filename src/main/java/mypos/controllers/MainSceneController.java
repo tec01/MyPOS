@@ -23,7 +23,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import mypos.commons.SpringFXMLLoader;
 import mypos.services.StageManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -32,12 +33,26 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 @Component
-public class MainSceneController implements Initializable {
+public class MainSceneController implements Initializable  {
 
-	@Autowired
+	private static Logger LOG = LogManager.getLogger(MainSceneController.class);
+
 	private ConfigurableApplicationContext applicationContext;
-	@Autowired
 	private SpringFXMLLoader springFXMLLoader;
+
+	@FXML
+	private BorderPane borderPanel;
+	@FXML
+	private BorderPane mainPanel;
+	@FXML
+	private BorderPane placeHolder;
+	@FXML
+	private BorderPane topBar;
+	@FXML
+	private JFXDrawer navBarDrawer;
+	@FXML
+	private VBox navBar;
+
 
 	@FXML
 	private Button btnClose, btnTpv, btnProducts, btnFamilies,
@@ -54,20 +69,12 @@ public class MainSceneController implements Initializable {
 	private Pane ordersPanel;
 	@FXML
 	private Pane reportsPanel;
-	@FXML
-	private BorderPane placeHolder;
-	@FXML
-	private BorderPane mainPanel;
-	@FXML
-	private VBox navBar;
-	@FXML
-	private BorderPane mainSceneCenterPanel;
+
+
+
 	@FXML
 	private JFXHamburger hamburger;
-	@FXML
-	private JFXDrawer menuDrawer;
-	@FXML
-	private BorderPane mainSceneTopBar;
+
 
 	private Stage stage;
 	private Double xOffset;
@@ -75,22 +82,18 @@ public class MainSceneController implements Initializable {
 
 	private StageManager stageManager;
 
-	public MainSceneController(StageManager stageManager){
+	public MainSceneController(StageManager stageManager,SpringFXMLLoader springFXMLLoader,
+							   ConfigurableApplicationContext applicationContext){
 		this.stageManager = stageManager;
+		this.springFXMLLoader=springFXMLLoader;
+		this.applicationContext=applicationContext;
 	}
 
 	public void initialize(URL location, ResourceBundle resources) {
 
-
-		mainSceneCenterPanel.setPrefWidth(stageManager.getWidth());
-		mainSceneCenterPanel.setPrefHeight(stageManager.getHeight());
-
-		mainSceneTopBar.setPrefWidth(stageManager.getWidth());
-
 		//menu drawer initial position
-		mainPanel.setLeft(menuDrawer);
-		menuDrawer.setSidePane(navBar);
-		menuDrawer.open();
+		navBarDrawer.setSidePane(navBar);
+		navBarDrawer.open();
 
 		//menu drawer animation
 		HamburgerBackArrowBasicTransition transition1 = new HamburgerBackArrowBasicTransition(hamburger);
@@ -99,55 +102,52 @@ public class MainSceneController implements Initializable {
 		hamburger.addEventFilter(MouseEvent.MOUSE_PRESSED, (e)->{
 			transition1.setRate(transition1.getRate()* -1);
 			transition1.play();
-			if(menuDrawer.isOpened()){
-				menuDrawer.close();
-				moveMainPanel("LEFT");
+			if(navBarDrawer.isOpened()){
+				navBarDrawer.close();
+				resizeMainPanel("LEFT");
 			}else{
-				moveMainPanel("RIGHT");
-				menuDrawer.open();
+				resizeMainPanel("RIGHT");
+				navBarDrawer.open();
 			}
 		});
 
 	}
 
-	private void moveMainPanel(String value){
+	private void resizeMainPanel(String value){
 
-		WritableValue<Double> xPosition = new WritableValue<>() {
+		WritableValue<Double> xCoordinate = new WritableValue<>() {
 			@Override
 			public Double getValue() {
-				return mainSceneCenterPanel.getTranslateX();
+				return mainPanel.getTranslateX();
 			}
 
 			@Override
 			public void setValue(Double value) {
-				mainSceneCenterPanel.setTranslateX(value);
+				mainPanel.setTranslateX(value);
 			}
 		};
 		WritableValue<Double> prefWidth = new WritableValue<>() {
 			@Override
 			public Double getValue() {
-				return mainSceneTopBar.getPrefWidth();
+				return mainPanel.getWidth();
 			}
 
 			@Override
 			public void setValue(Double value) {
-				mainSceneTopBar.setPrefWidth(value);
+				mainPanel.setMinWidth(value);
 			}
 		};
-		System.out.println("init prefWidth:"+mainSceneTopBar.getPrefWidth());
 
 		KeyValue positionKeyValue = null;
 		KeyValue widthKeyValue = null;
 		switch (value){
 			case "LEFT":
-				positionKeyValue = new KeyValue(xPosition,  xPosition.getValue()-menuDrawer.getWidth());
-				widthKeyValue = new KeyValue(prefWidth,  mainSceneTopBar.getPrefWidth()+menuDrawer.getWidth());
-				System.out.println("close width expected:"+(prefWidth.getValue()+menuDrawer.getWidth()));
+				positionKeyValue = new KeyValue(mainPanel.translateXProperty(),  mainPanel.getTranslateX()-navBarDrawer.getWidth());
+				widthKeyValue = new KeyValue(prefWidth,  mainPanel.getWidth()+navBarDrawer.getWidth());
 				break;
 			case "RIGHT":
-				positionKeyValue = new KeyValue(xPosition,  xPosition.getValue()+menuDrawer.getWidth());
-				widthKeyValue = new KeyValue(prefWidth,  mainSceneTopBar.getPrefWidth()-menuDrawer.getWidth());
-				System.out.println("open width expected:"+(prefWidth.getValue()-menuDrawer.getWidth()));
+				positionKeyValue = new KeyValue(mainPanel.translateXProperty(),  mainPanel.getTranslateX()+navBarDrawer.getWidth());
+				widthKeyValue = new KeyValue(prefWidth,  mainPanel.getWidth()-navBarDrawer.getWidth());
 				break;
 			default:
 				break;
@@ -161,7 +161,6 @@ public class MainSceneController implements Initializable {
 		animTimer.setAutoReverse(false);
 		animTimer.getKeyFrames().addAll(keyFramePosition, keyFrameWidth);
 		animTimer.play();
-		System.out.println("result width:"+mainSceneTopBar.getPrefWidth());
 
 	}
 

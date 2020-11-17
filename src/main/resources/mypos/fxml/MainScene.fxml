@@ -5,12 +5,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane fx:id="mainPanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypos.controllers.MainSceneController">
+<BorderPane fx:id="borderPanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mypos.controllers.MainSceneController">
 	<left>
-        <JFXDrawer fx:id="menuDrawer" defaultDrawerSize="130.0" maxWidth="-Infinity" BorderPane.alignment="CENTER">
+        <JFXDrawer fx:id="navBarDrawer" defaultDrawerSize="130.0" maxWidth="-Infinity" BorderPane.alignment="CENTER">
 		<VBox id="navBar" fx:id="navBar" alignment="TOP_CENTER" depthTest="DISABLE" stylesheets="@../../style.css" BorderPane.alignment="TOP_CENTER">
             <Label id="btnDashBoard" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="50.0" stylesheets="@../../style.css" text="POS">
                <font>
@@ -73,28 +73,28 @@
                   </VBox>
                </graphic>
             </Button>
+            <Button fx:id="btnClose" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#close" prefHeight="80.0" styleClass="navBarButton" stylesheets="@../../style.css">
+                <graphic>
+                    <VBox alignment="CENTER">
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" >
+                        </ImageView>
+                        <Label text="Close" />
+                    </VBox>
+                </graphic>
+            </Button>
 			<opaqueInsets>
 				<Insets />
 			</opaqueInsets>
 		</VBox>
         </JFXDrawer>
 	</left>
-	<center>
 
-	</center>
 	<center>
-		<BorderPane fx:id="mainSceneCenterPanel" maxWidth="-Infinity" minWidth="-Infinity" BorderPane.alignment="TOP_CENTER">
+		<BorderPane id="mainPanel" fx:id="mainPanel" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="TOP_CENTER" stylesheets="@../../style.css">
 			<top>
-				<BorderPane fx:id="mainSceneTopBar" cacheShape="false" maxWidth="-Infinity" minWidth="-Infinity" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="50.0" prefWidth="700.0" scaleShape="false" styleClass="windowTopBar" stylesheets="@../../style.css">
-					<right>
-						<Button id="btnClose" fx:id="btnClose" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#close" prefHeight="50.0" prefWidth="50.0" style="-fx-background-image: \@mypos\img\close.svg;" stylesheets="@../../style.css" BorderPane.alignment="CENTER">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-					</right>
+				<BorderPane fx:id="topBar" cacheShape="false" maxWidth="1.7976931348623157E308" onMouseDragged="#moveWindow" onMousePressed="#takeCurrentPosition" prefHeight="50.0" scaleShape="false" styleClass="windowTopBar" stylesheets="@../../style.css">
 					<center>
-						<HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" spacing="10.0" BorderPane.alignment="CENTER">
+						<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="50.0" spacing="10.0" BorderPane.alignment="CENTER">
 							<children>
 								<Label text="User" />
 								<ComboBox id="boxUser" fx:id="boxUser" maxHeight="1.7976931348623157E308" prefWidth="150.0" styleClass="windowTopBar" stylesheets="@../../style.css">
@@ -117,7 +117,7 @@
 				</BorderPane>
 			</top>
          <center>
-            <BorderPane fx:id="placeHolder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER" />
+            <BorderPane fx:id="placeHolder" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER"/>
          </center>
 		</BorderPane>
 	</center>
